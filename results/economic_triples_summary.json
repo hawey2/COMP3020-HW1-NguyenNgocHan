@@ -1,0 +1,95 @@
+{
+  "n_distinct_triples": 10,
+  "table": [
+    {
+      "Unemployment rate": 7.6,
+      "Inflation rate": 2.6,
+      "GDP": 0.32,
+      "n": 452,
+      "dropouts": 202,
+      "dropout_rate": 0.4469026548672566,
+      "graduates": 250
+    },
+    {
+      "Unemployment rate": 8.9,
+      "Inflation rate": 1.4,
+      "GDP": 3.51,
+      "n": 291,
+      "dropouts": 102,
+      "dropout_rate": 0.35051546391752575,
+      "graduates": 189
+    },
+    {
+      "Unemployment rate": 9.4,
+      "Inflation rate": -0.8,
+      "GDP": -3.12,
+      "n": 424,
+      "dropouts": 174,
+      "dropout_rate": 0.41037735849056606,
+      "graduates": 250
+    },
+    {
+      "Unemployment rate": 10.8,
+      "Inflation rate": 1.4,
+      "GDP": 1.74,
+      "n": 435,
+      "dropouts": 182,
+      "dropout_rate": 0.41839080459770117,
+      "graduates": 253
+    },
+    {
+      "Unemployment rate": 11.1,
+      "Inflation rate": 0.6,
+      "GDP": 2.02,
+      "n": 347,
+      "dropouts": 117,
+      "dropout_rate": 0.3371757925072046,
+      "graduates": 230
+    },
+    {
+      "Unemployment rate": 12.4,
+      "Inflation rate": 0.5,
+      "GDP": 1.79,
+      "n": 355,
+      "dropouts": 107,
+      "dropout_rate": 0.30140845070422534,
+      "graduates": 248
+    },
+    {
+      "Unemployment rate": 12.7,
+      "Inflation rate": 3.7,
+      "GDP": -1.7,
+      "n": 356,
+      "dropouts": 141,
+      "dropout_rate": 0.3960674157303371,
+      "graduates": 215
+    },
+    {
+      "Unemployment rate": 13.9,
+      "Inflation rate": -0.3,
+      "GDP": 0.79,
+      "n": 326,
+      "dropouts": 118,
+      "dropout_rate": 0.3619631901840491,
+      "graduates": 208
+    },
+    {
+      "Unemployment rate": 15.5,
+      "Inflation rate": 2.8,
+      "GDP": -4.06,
+      "n": 328,
+      "dropouts": 139,
+      "dropout_rate": 0.42378048780487804,
+      "graduates": 189
+    },
+    {
+      "Unemployment rate": 16.2,
+      "Inflation rate": 0.3,
+      "GDP": -0.92,
+      "n": 316,
+      "dropouts": 139,
+      "dropout_rate": 0.439873417721519,
+      "graduates": 177
+    }
+  ]
+}

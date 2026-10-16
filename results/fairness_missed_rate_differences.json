@@ -1,0 +1,38 @@
+{
+  "P1_id3|Gender": {
+    "missed_rate_difference_g1_minus_g0": -0.05564435564435566
+  },
+  "P1_id3|Scholarship holder": {
+    "missed_rate_difference_g1_minus_g0": 0.06708407871198563
+  },
+  "P1_id3|Tuition fees up to date": {
+    "missed_rate_difference_g1_minus_g0": 0.4409835161806053
+  },
+  "P4_knn|Gender": {
+    "missed_rate_difference_g1_minus_g0": -0.09170829170829176
+  },
+  "P4_knn|Scholarship holder": {
+    "missed_rate_difference_g1_minus_g0": 0.14788312462731068
+  },
+  "P4_knn|Tuition fees up to date": {
+    "missed_rate_difference_g1_minus_g0": 0.2897623904294614
+  },
+  "A5_id3_no_gender|Gender": {
+    "missed_rate_difference_g1_minus_g0": -0.05564435564435566
+  },
+  "A5_id3_no_gender|Scholarship holder": {
+    "missed_rate_difference_g1_minus_g0": 0.06708407871198563
+  },
+  "A5_id3_no_gender|Tuition fees up to date": {
+    "missed_rate_difference_g1_minus_g0": 0.4409835161806053
+  },
+  "A6_knn_no_gender|Gender": {
+    "missed_rate_difference_g1_minus_g0": -0.04025974025974033
+  },
+  "A6_knn_no_gender|Scholarship holder": {
+    "missed_rate_difference_g1_minus_g0": 0.11717352415026827
+  },
+  "A6_knn_no_gender|Tuition fees up to date": {
+    "missed_rate_difference_g1_minus_g0": 0.33634709741441093
+  }
+}

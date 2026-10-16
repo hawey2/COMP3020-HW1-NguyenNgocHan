@@ -20,16 +20,16 @@ Use the semester 2 models (P3 and P6). Show the two explanations side by side fo
 
 **ID3 explanation** (from `decision_path`):
 
-- [ ] each feature and value on the path the student followed;
-- [ ] the original numeric **bin intervals**, where the feature was binned (translate them with the preprocessor);
-- [ ] the training counts `(Graduate, Dropout)` at the node reached;
-- [ ] the dropout risk.
+- [x] each feature and value on the path the student followed;
+- [x] the original numeric **bin intervals**, where the feature was binned (translate them with the preprocessor);
+- [x] the training counts `(Graduate, Dropout)` at the node reached;
+- [x] the dropout risk.
 
 **kNN explanation** (from `kneighbors`, mixed distance):
 
-- [ ] the **five** nearest training students, with their distances and true training outcomes;
-- [ ] a few feature similarities and differences between the student and those neighbors;
-- [ ] if the tuned `k` is not 5, show the five-neighbor explanation **separately** from the vote over the actual `k`, and report that full vote and risk as well.
+- [x] the **five** nearest training students, with their distances and true training outcomes;
+- [x] a few feature similarities and differences between the student and those neighbors;
+- [x] if the tuned `k` is not 5, show the five-neighbor explanation **separately** from the vote over the actual `k`, and report that full vote and risk as well.
 
 Answer in the report:
 

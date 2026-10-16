@@ -1,0 +1,7 @@
+run,distance,k,validation_precision
+P4 kNN enrollment,mixed,21,0.9027777777777778
+P5 kNN semester 1,mixed,51,1.0
+P6 kNN semester 2,mixed,51,1.0
+A3 kNN raw semester 2,raw,51,1.0
+A4 kNN reduced semester 2,mixed,51,1.0
+A6 kNN no Gender enrollment,mixed,21,0.8611111111111112

@@ -1,0 +1,199 @@
+{
+  "timeline": [
+    {
+      "checkpoint": "enrollment",
+      "model": "ID3",
+      "n": 726,
+      "B": 72,
+      "D": 284,
+      "dropouts_reached": 61,
+      "precision": 0.8472222222222222,
+      "recall": 0.2147887323943662,
+      "lift": 2.1657863849765255,
+      "settings": "n_bins=3, max_depth=3, min_samples_split=10",
+      "cutoff_tied": 86,
+      "cutoff_selected": 72
+    },
+    {
+      "checkpoint": "enrollment",
+      "model": "kNN (mixed)",
+      "n": 726,
+      "B": 72,
+      "D": 284,
+      "dropouts_reached": 60,
+      "precision": 0.8333333333333334,
+      "recall": 0.2112676056338028,
+      "lift": 2.130281690140845,
+      "settings": "k=21, mixed distance",
+      "cutoff_tied": 18,
+      "cutoff_selected": 8
+    },
+    {
+      "checkpoint": "semester1",
+      "model": "ID3",
+      "n": 726,
+      "B": 72,
+      "D": 284,
+      "dropouts_reached": 69,
+      "precision": 0.9583333333333334,
+      "recall": 0.24295774647887325,
+      "lift": 2.449823943661972,
+      "settings": "n_bins=3, max_depth=3, min_samples_split=10",
+      "cutoff_tied": 182,
+      "cutoff_selected": 72
+    },
+    {
+      "checkpoint": "semester1",
+      "model": "kNN (mixed)",
+      "n": 726,
+      "B": 72,
+      "D": 284,
+      "dropouts_reached": 72,
+      "precision": 1.0,
+      "recall": 0.2535211267605634,
+      "lift": 2.556338028169014,
+      "settings": "k=51, mixed distance",
+      "cutoff_tied": 10,
+      "cutoff_selected": 3
+    },
+    {
+      "checkpoint": "semester2",
+      "model": "ID3",
+      "n": 726,
+      "B": 72,
+      "D": 284,
+      "dropouts_reached": 70,
+      "precision": 0.9722222222222222,
+      "recall": 0.24647887323943662,
+      "lift": 2.4853286384976525,
+      "settings": "n_bins=3, max_depth=3, min_samples_split=10",
+      "cutoff_tied": 192,
+      "cutoff_selected": 72
+    },
+    {
+      "checkpoint": "semester2",
+      "model": "kNN (mixed)",
+      "n": 726,
+      "B": 72,
+      "D": 284,
+      "dropouts_reached": 72,
+      "precision": 1.0,
+      "recall": 0.2535211267605634,
+      "lift": 2.556338028169014,
+      "settings": "k=51, mixed distance",
+      "cutoff_tied": 91,
+      "cutoff_selected": 72
+    }
+  ],
+  "baseline": {
+    "n": 726,
+    "budget": 72,
+    "dropouts": 284,
+    "reached": 50,
+    "precision": 0.6944444444444444,
+    "recall": 0.176056338028169,
+    "missed_rate": 0.823943661971831,
+    "lift": 1.7752347417840375,
+    "cutoff_score": 0.6133333333333333,
+    "cutoff_tied": 30,
+    "cutoff_selected": 3
+  },
+  "random_expectation": {
+    "expected_dropouts_reached": 28.165289256198346,
+    "expected_precision": 0.39118457300275483,
+    "expected_recall": 0.09917355371900827,
+    "expected_lift": 1.0
+  },
+  "raw_vs_mixed": [
+    {
+      "distance": "raw (A3)",
+      "settings": "k=51",
+      "validation_precision": 1.0,
+      "test_precision": 1.0,
+      "test_recall": 0.2535211267605634,
+      "dropouts_reached": 72
+    },
+    {
+      "distance": "mixed (P6)",
+      "settings": "k=51",
+      "validation_precision": 1.0,
+      "test_precision": 1.0,
+      "test_recall": 0.2535211267605634,
+      "dropouts_reached": 72
+    }
+  ],
+  "reduced_ablation_overlap": 71,
+  "gender_removal_metrics": [
+    {
+      "run": "P1 ID3 (with Gender)",
+      "test_precision": 0.8472222222222222,
+      "test_recall": 0.2147887323943662
+    },
+    {
+      "run": "A5 ID3 (Gender removed)",
+      "test_precision": 0.8472222222222222,
+      "test_recall": 0.2147887323943662
+    },
+    {
+      "run": "P4 kNN (with Gender)",
+      "test_precision": 0.8333333333333334,
+      "test_recall": 0.2112676056338028
+    },
+    {
+      "run": "A6 kNN (Gender removed)",
+      "test_precision": 0.875,
+      "test_recall": 0.22183098591549297
+    }
+  ],
+  "gender_gap": {
+    "P4_knn_with_gender": -0.09170829170829176,
+    "A6_knn_no_gender": -0.04025974025974033,
+    "P1_id3_with_gender": -0.05564435564435566,
+    "A5_id3_no_gender": -0.05564435564435566,
+    "interpretation": "missed-dropout rate for Gender=1 (male) minus Gender=0 (female)"
+  },
+  "enrolled_summary": {
+    "enrolled_id3": {
+      "count": 794,
+      "mean": 0.4907177031146021,
+      "std": 0.3975976225446345,
+      "min": 0.0,
+      "p25": 0.11475409836065574,
+      "median": 0.2826086956521739,
+      "p75": 1.0,
+      "max": 1.0
+    },
+    "enrolled_knn": {
+      "count": 794,
+      "mean": 0.3135526250802588,
+      "std": 0.22186904166971474,
+      "min": 0.0,
+      "p25": 0.1568627450980392,
+      "median": 0.2549019607843137,
+      "p75": 0.4117647058823529,
+      "max": 1.0
+    },
+    "test_id3_P3": {
+      "count": 726,
+      "mean": 0.42374902158406946,
+      "std": 0.4175170250115039,
+      "min": 0.0,
+      "p25": 0.04433497536945813,
+      "median": 0.2222222222222222,
+      "p75": 1.0,
+      "max": 1.0
+    },
+    "test_knn_P6": {
+      "count": 726,
+      "mean": 0.34270512612758597,
+      "std": 0.338491018464136,
+      "min": 0.0,
+      "p25": 0.0784313725490196,
+      "median": 0.17647058823529413,
+      "p75": 0.5490196078431373,
+      "max": 1.0
+    },
+    "note": "Enrolled students have unresolved outcomes; no precision/recall/accuracy is computed."
+  },
+  "economic_triples_count": 10
+}

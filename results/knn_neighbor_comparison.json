@@ -1,0 +1,57 @@
+{
+  "student_row_id": 2914,
+  "raw_neighbors": [
+    {
+      "row_id": 2420,
+      "distance": 9.710303805751908,
+      "outcome": 1
+    },
+    {
+      "row_id": 2340,
+      "distance": 11.137935176683333,
+      "outcome": 1
+    },
+    {
+      "row_id": 834,
+      "distance": 11.473168699186813,
+      "outcome": 1
+    },
+    {
+      "row_id": 711,
+      "distance": 11.79209904978753,
+      "outcome": 1
+    },
+    {
+      "row_id": 2033,
+      "distance": 12.212960329093024,
+      "outcome": 1
+    }
+  ],
+  "mixed_neighbors": [
+    {
+      "row_id": 102,
+      "distance": 2.985353886741608,
+      "outcome": 1
+    },
+    {
+      "row_id": 3347,
+      "distance": 2.9858392880987457,
+      "outcome": 1
+    },
+    {
+      "row_id": 4012,
+      "distance": 3.1802268515152883,
+      "outcome": 1
+    },
+    {
+      "row_id": 376,
+      "distance": 3.223079076919118,
+      "outcome": 1
+    },
+    {
+      "row_id": 683,
+      "distance": 3.4608507750022492,
+      "outcome": 1
+    }
+  ]
+}

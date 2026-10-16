@@ -96,9 +96,9 @@ A two-panel figure:
 
 ### Interpretation
 
-- [ ] Report the change between checkpoints in **percentage points** for each model.
-- [ ] Semester results may give a large improvement. Investigate this rather than forcing the pattern.
-- [ ] Discuss the predictive value of approved units, grades, `Course`, and fee status, and weigh it against the cost of waiting to intervene.
+- [x] Report the change between checkpoints in **percentage points** for each model.
+- [x] Semester results may give a large improvement. Investigate this rather than forcing the pattern.
+- [x] Discuss the predictive value of approved units, grades, `Course`, and fee status, and weigh it against the cost of waiting to intervene.
 
 ## Save / report
 

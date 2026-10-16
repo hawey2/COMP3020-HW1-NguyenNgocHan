@@ -1,0 +1,16 @@
+{
+  "n_records": 4424,
+  "n_predictors": 34,
+  "resolved_students": 3630,
+  "enrolled_students": 794,
+  "dropout_students": 1421,
+  "graduate_students": 2209,
+  "dropout_prevalence_in_resolved": 0.39146005509641874,
+  "train_validation_test": [
+    2178,
+    726,
+    726
+  ],
+  "duplicate_rows_including_target": 0,
+  "missing_cells": 0
+}

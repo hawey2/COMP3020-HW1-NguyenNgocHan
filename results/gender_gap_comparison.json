@@ -1,0 +1,7 @@
+{
+  "P4_knn_with_gender": -0.09170829170829176,
+  "A6_knn_no_gender": -0.04025974025974033,
+  "P1_id3_with_gender": -0.05564435564435566,
+  "A5_id3_no_gender": -0.05564435564435566,
+  "interpretation": "missed-dropout rate for Gender=1 (male) minus Gender=0 (female)"
+}

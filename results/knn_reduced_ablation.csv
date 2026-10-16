@@ -1,0 +1,3 @@
+run,k,test_precision,test_recall,dropouts_reached
+P6 full mixed,51,1.0,0.2535211267605634,72
+"A4 reduced mixed (drop International, 1st-sem approved)",51,1.0,0.2535211267605634,72

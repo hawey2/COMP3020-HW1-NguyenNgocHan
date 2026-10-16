@@ -1,0 +1,802 @@
+[
+  {
+    "student_row_id": 39,
+    "true_outcome": 1,
+    "id3": {
+      "path": [
+        {
+          "feature": "Curricular units 2nd sem (approved)",
+          "value": 0,
+          "display_value": "bin 0 ([-inf, 4))",
+          "counts_graduate": 1325,
+          "counts_dropout": 853,
+          "risk": 0.391643709825528,
+          "fallback": false
+        },
+        {
+          "feature": "Course",
+          "value": 8,
+          "display_value": 8,
+          "counts_graduate": 60,
+          "counts_dropout": 622,
+          "risk": 0.9120234604105572,
+          "fallback": false
+        },
+        {
+          "feature": null,
+          "value": null,
+          "display_value": null,
+          "counts_graduate": 0,
+          "counts_dropout": 34,
+          "risk": 1.0,
+          "fallback": false
+        }
+      ],
+      "risk": 1.0
+    },
+    "knn": {
+      "tuned_k": 51,
+      "five_neighbors": [
+        {
+          "row_id": 309,
+          "distance": 3.0813789612086646,
+          "outcome": 1
+        },
+        {
+          "row_id": 2909,
+          "distance": 3.0864502504692792,
+          "outcome": 1
+        },
+        {
+          "row_id": 1448,
+          "distance": 3.332304396007162,
+          "outcome": 1
+        },
+        {
+          "row_id": 2059,
+          "distance": 3.344556919371999,
+          "outcome": 1
+        },
+        {
+          "row_id": 2404,
+          "distance": 3.4114716984898976,
+          "outcome": 1
+        }
+      ],
+      "comparisons": [
+        {
+          "row_id": 309,
+          "n_categorical_matches": 10,
+          "categorical_mismatches": [
+            "Nacionality",
+            "Mother's qualification",
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation",
+            "Displaced",
+            "International"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Curricular units 1st sem (evaluations)",
+              "student": 13.0,
+              "neighbor": 7.0,
+              "absolute_difference": 6.0
+            },
+            {
+              "feature": "Curricular units 1st sem (approved)",
+              "student": 3.0,
+              "neighbor": 5.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Age at enrollment",
+              "student": 20.0,
+              "neighbor": 19.0,
+              "absolute_difference": 1.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (evaluations)",
+              "student": 11.0,
+              "neighbor": 12.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        },
+        {
+          "row_id": 2909,
+          "n_categorical_matches": 9,
+          "categorical_mismatches": [
+            "Course",
+            "Previous qualification",
+            "Nacionality",
+            "Mother's qualification",
+            "Father's qualification",
+            "Father's occupation",
+            "Displaced",
+            "International"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 20.0,
+              "neighbor": 23.0,
+              "absolute_difference": 3.0
+            },
+            {
+              "feature": "Curricular units 1st sem (credited)",
+              "student": 2.0,
+              "neighbor": 0.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 1st sem (approved)",
+              "student": 3.0,
+              "neighbor": 5.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (credited)",
+              "student": 1.0,
+              "neighbor": 0.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        },
+        {
+          "row_id": 1448,
+          "n_categorical_matches": 7,
+          "categorical_mismatches": [
+            "Course",
+            "Nacionality",
+            "Mother's qualification",
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation",
+            "Debtor",
+            "Tuition fees up to date",
+            "Gender",
+            "International"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Curricular units 1st sem (credited)",
+              "student": 2.0,
+              "neighbor": 0.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (grade)",
+              "student": 12.0,
+              "neighbor": 13.666666666666666,
+              "absolute_difference": 1.666666666666666
+            },
+            {
+              "feature": "Curricular units 1st sem (evaluations)",
+              "student": 13.0,
+              "neighbor": 12.0,
+              "absolute_difference": 1.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (credited)",
+              "student": 1.0,
+              "neighbor": 0.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        },
+        {
+          "row_id": 2059,
+          "n_categorical_matches": 10,
+          "categorical_mismatches": [
+            "Course",
+            "Nacionality",
+            "Mother's qualification",
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation",
+            "International"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Unemployment rate",
+              "student": 12.4,
+              "neighbor": 16.2,
+              "absolute_difference": 3.799999999999999
+            },
+            {
+              "feature": "GDP",
+              "student": 1.79,
+              "neighbor": -0.92,
+              "absolute_difference": 2.71
+            },
+            {
+              "feature": "Curricular units 2nd sem (approved)",
+              "student": 3.0,
+              "neighbor": 5.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 1st sem (grade)",
+              "student": 11.666666666666666,
+              "neighbor": 13.0,
+              "absolute_difference": 1.333333333333334
+            }
+          ]
+        },
+        {
+          "row_id": 2404,
+          "n_categorical_matches": 7,
+          "categorical_mismatches": [
+            "Application mode",
+            "Course",
+            "Previous qualification",
+            "Nacionality",
+            "Mother's qualification",
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation",
+            "Gender",
+            "International"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Curricular units 1st sem (credited)",
+              "student": 2.0,
+              "neighbor": 0.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 1st sem (grade)",
+              "student": 11.666666666666666,
+              "neighbor": 12.94,
+              "absolute_difference": 1.2733333333333334
+            },
+            {
+              "feature": "Age at enrollment",
+              "student": 20.0,
+              "neighbor": 21.0,
+              "absolute_difference": 1.0
+            },
+            {
+              "feature": "Curricular units 1st sem (enrolled)",
+              "student": 6.0,
+              "neighbor": 7.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        }
+      ],
+      "full_vote_dropout_fraction": 0.5882352941176471,
+      "risk_over_tuned_k": 0.5882352941176471
+    }
+  },
+  {
+    "student_row_id": 336,
+    "true_outcome": 0,
+    "id3": {
+      "path": [
+        {
+          "feature": "Curricular units 2nd sem (approved)",
+          "value": 2,
+          "display_value": "bin 2 ([6, +inf))",
+          "counts_graduate": 1325,
+          "counts_dropout": 853,
+          "risk": 0.391643709825528,
+          "fallback": false
+        },
+        {
+          "feature": "Course",
+          "value": 16,
+          "display_value": 16,
+          "counts_graduate": 907,
+          "counts_dropout": 89,
+          "risk": 0.0893574297188755,
+          "fallback": false
+        },
+        {
+          "feature": "Application mode",
+          "value": 4,
+          "display_value": 4,
+          "counts_graduate": 24,
+          "counts_dropout": 6,
+          "risk": 0.2,
+          "fallback": false
+        },
+        {
+          "feature": null,
+          "value": null,
+          "display_value": null,
+          "counts_graduate": 1,
+          "counts_dropout": 1,
+          "risk": 0.5,
+          "fallback": false
+        }
+      ],
+      "risk": 0.5
+    },
+    "knn": {
+      "tuned_k": 51,
+      "five_neighbors": [
+        {
+          "row_id": 310,
+          "distance": 3.041304622241206,
+          "outcome": 0
+        },
+        {
+          "row_id": 3908,
+          "distance": 3.1599459056623096,
+          "outcome": 0
+        },
+        {
+          "row_id": 4230,
+          "distance": 3.251685157118914,
+          "outcome": 0
+        },
+        {
+          "row_id": 1274,
+          "distance": 3.3109731750198486,
+          "outcome": 0
+        },
+        {
+          "row_id": 2983,
+          "distance": 3.3591139441491684,
+          "outcome": 0
+        }
+      ],
+      "comparisons": [
+        {
+          "row_id": 310,
+          "n_categorical_matches": 12,
+          "categorical_mismatches": [
+            "Application mode",
+            "Course",
+            "Previous qualification",
+            "Mother's qualification",
+            "Father's qualification"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 40.0,
+              "neighbor": 26.0,
+              "absolute_difference": 14.0
+            },
+            {
+              "feature": "Curricular units 1st sem (evaluations)",
+              "student": 8.0,
+              "neighbor": 6.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Unemployment rate",
+              "student": 12.4,
+              "neighbor": 11.1,
+              "absolute_difference": 1.3000000000000007
+            },
+            {
+              "feature": "Curricular units 1st sem (enrolled)",
+              "student": 7.0,
+              "neighbor": 6.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        },
+        {
+          "row_id": 3908,
+          "n_categorical_matches": 8,
+          "categorical_mismatches": [
+            "Marital status",
+            "Application mode",
+            "Course",
+            "Previous qualification",
+            "Mother's qualification",
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation",
+            "Scholarship holder"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 40.0,
+              "neighbor": 42.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 1st sem (grade)",
+              "student": 15.0,
+              "neighbor": 13.333333333333334,
+              "absolute_difference": 1.666666666666666
+            },
+            {
+              "feature": "Unemployment rate",
+              "student": 12.4,
+              "neighbor": 11.1,
+              "absolute_difference": 1.3000000000000007
+            },
+            {
+              "feature": "Curricular units 1st sem (enrolled)",
+              "student": 7.0,
+              "neighbor": 6.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        },
+        {
+          "row_id": 4230,
+          "n_categorical_matches": 10,
+          "categorical_mismatches": [
+            "Marital status",
+            "Application mode",
+            "Course",
+            "Previous qualification",
+            "Mother's qualification",
+            "Father's occupation",
+            "Debtor"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 40.0,
+              "neighbor": 28.0,
+              "absolute_difference": 12.0
+            },
+            {
+              "feature": "Unemployment rate",
+              "student": 12.4,
+              "neighbor": 13.9,
+              "absolute_difference": 1.5
+            },
+            {
+              "feature": "Curricular units 2nd sem (enrolled)",
+              "student": 7.0,
+              "neighbor": 8.0,
+              "absolute_difference": 1.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (evaluations)",
+              "student": 7.0,
+              "neighbor": 8.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        },
+        {
+          "row_id": 1274,
+          "n_categorical_matches": 10,
+          "categorical_mismatches": [
+            "Course",
+            "Daytime/evening attendance",
+            "Mother's qualification",
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation",
+            "Debtor"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 40.0,
+              "neighbor": 32.0,
+              "absolute_difference": 8.0
+            },
+            {
+              "feature": "Curricular units 1st sem (grade)",
+              "student": 15.0,
+              "neighbor": 11.6,
+              "absolute_difference": 3.4000000000000004
+            },
+            {
+              "feature": "Curricular units 2nd sem (grade)",
+              "student": 14.571428571428571,
+              "neighbor": 12.333333333333334,
+              "absolute_difference": 2.2380952380952372
+            },
+            {
+              "feature": "Curricular units 1st sem (enrolled)",
+              "student": 7.0,
+              "neighbor": 5.0,
+              "absolute_difference": 2.0
+            }
+          ]
+        },
+        {
+          "row_id": 2983,
+          "n_categorical_matches": 11,
+          "categorical_mismatches": [
+            "Previous qualification",
+            "Mother's qualification",
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation",
+            "Tuition fees up to date"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 40.0,
+              "neighbor": 25.0,
+              "absolute_difference": 15.0
+            },
+            {
+              "feature": "Unemployment rate",
+              "student": 12.4,
+              "neighbor": 10.8,
+              "absolute_difference": 1.5999999999999996
+            },
+            {
+              "feature": "Curricular units 1st sem (credited)",
+              "student": 0.0,
+              "neighbor": 1.0,
+              "absolute_difference": 1.0
+            },
+            {
+              "feature": "Curricular units 1st sem (enrolled)",
+              "student": 7.0,
+              "neighbor": 6.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        }
+      ],
+      "full_vote_dropout_fraction": 0.09803921568627451,
+      "risk_over_tuned_k": 0.09803921568627451
+    }
+  },
+  {
+    "student_row_id": 26,
+    "true_outcome": 0,
+    "id3": {
+      "path": [
+        {
+          "feature": "Curricular units 2nd sem (approved)",
+          "value": 2,
+          "display_value": "bin 2 ([6, +inf))",
+          "counts_graduate": 1325,
+          "counts_dropout": 853,
+          "risk": 0.391643709825528,
+          "fallback": false
+        },
+        {
+          "feature": "Course",
+          "value": 10,
+          "display_value": 10,
+          "counts_graduate": 907,
+          "counts_dropout": 89,
+          "risk": 0.0893574297188755,
+          "fallback": false
+        },
+        {
+          "feature": "Father's qualification",
+          "value": 28,
+          "display_value": 28,
+          "counts_graduate": 117,
+          "counts_dropout": 2,
+          "risk": 0.01680672268907563,
+          "fallback": false
+        },
+        {
+          "feature": null,
+          "value": null,
+          "display_value": null,
+          "counts_graduate": 33,
+          "counts_dropout": 0,
+          "risk": 0.0,
+          "fallback": false
+        }
+      ],
+      "risk": 0.0
+    },
+    "knn": {
+      "tuned_k": 51,
+      "five_neighbors": [
+        {
+          "row_id": 650,
+          "distance": 2.232508837375349,
+          "outcome": 0
+        },
+        {
+          "row_id": 1216,
+          "distance": 2.302623543520522,
+          "outcome": 0
+        },
+        {
+          "row_id": 2099,
+          "distance": 2.322733013703618,
+          "outcome": 1
+        },
+        {
+          "row_id": 4333,
+          "distance": 2.3495357590254384,
+          "outcome": 1
+        },
+        {
+          "row_id": 2994,
+          "distance": 2.3678197341230103,
+          "outcome": 0
+        }
+      ],
+      "comparisons": [
+        {
+          "row_id": 650,
+          "n_categorical_matches": 14,
+          "categorical_mismatches": [
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Curricular units 1st sem (grade)",
+              "student": 11.375,
+              "neighbor": 15.375,
+              "absolute_difference": 4.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (grade)",
+              "student": 13.285714285714286,
+              "neighbor": 16.428571428571427,
+              "absolute_difference": 3.1428571428571406
+            },
+            {
+              "feature": "Age at enrollment",
+              "student": 21.0,
+              "neighbor": 18.0,
+              "absolute_difference": 3.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (evaluations)",
+              "student": 9.0,
+              "neighbor": 7.0,
+              "absolute_difference": 2.0
+            }
+          ]
+        },
+        {
+          "row_id": 1216,
+          "n_categorical_matches": 15,
+          "categorical_mismatches": [
+            "Father's qualification",
+            "Mother's occupation"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 21.0,
+              "neighbor": 18.0,
+              "absolute_difference": 3.0
+            },
+            {
+              "feature": "Application order",
+              "student": 2.0,
+              "neighbor": 4.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (evaluations)",
+              "student": 9.0,
+              "neighbor": 11.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (approved)",
+              "student": 6.0,
+              "neighbor": 4.0,
+              "absolute_difference": 2.0
+            }
+          ]
+        },
+        {
+          "row_id": 2099,
+          "n_categorical_matches": 12,
+          "categorical_mismatches": [
+            "Course",
+            "Father's qualification",
+            "Mother's occupation",
+            "Father's occupation",
+            "Debtor"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 21.0,
+              "neighbor": 19.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (grade)",
+              "student": 13.285714285714286,
+              "neighbor": 11.666666666666666,
+              "absolute_difference": 1.6190476190476204
+            },
+            {
+              "feature": "Curricular units 1st sem (evaluations)",
+              "student": 9.0,
+              "neighbor": 10.0,
+              "absolute_difference": 1.0
+            },
+            {
+              "feature": "Curricular units 2nd sem (evaluations)",
+              "student": 9.0,
+              "neighbor": 8.0,
+              "absolute_difference": 1.0
+            }
+          ]
+        },
+        {
+          "row_id": 4333,
+          "n_categorical_matches": 14,
+          "categorical_mismatches": [
+            "Application mode",
+            "Mother's occupation",
+            "Scholarship holder"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Curricular units 2nd sem (evaluations)",
+              "student": 9.0,
+              "neighbor": 12.0,
+              "absolute_difference": 3.0
+            },
+            {
+              "feature": "Unemployment rate",
+              "student": 16.2,
+              "neighbor": 13.9,
+              "absolute_difference": 2.299999999999999
+            },
+            {
+              "feature": "Curricular units 2nd sem (grade)",
+              "student": 13.285714285714286,
+              "neighbor": 11.0,
+              "absolute_difference": 2.2857142857142865
+            },
+            {
+              "feature": "Age at enrollment",
+              "student": 21.0,
+              "neighbor": 19.0,
+              "absolute_difference": 2.0
+            }
+          ]
+        },
+        {
+          "row_id": 2994,
+          "n_categorical_matches": 14,
+          "categorical_mismatches": [
+            "Course",
+            "Mother's qualification",
+            "Mother's occupation"
+          ],
+          "largest_numeric_differences": [
+            {
+              "feature": "Age at enrollment",
+              "student": 21.0,
+              "neighbor": 18.0,
+              "absolute_difference": 3.0
+            },
+            {
+              "feature": "Unemployment rate",
+              "student": 16.2,
+              "neighbor": 13.9,
+              "absolute_difference": 2.299999999999999
+            },
+            {
+              "feature": "Curricular units 1st sem (evaluations)",
+              "student": 9.0,
+              "neighbor": 7.0,
+              "absolute_difference": 2.0
+            },
+            {
+              "feature": "GDP",
+              "student": -0.92,
+              "neighbor": 0.79,
+              "absolute_difference": 1.71
+            }
+          ]
+        }
+      ],
+      "full_vote_dropout_fraction": 0.09803921568627451,
+      "risk_over_tuned_k": 0.09803921568627451
+    }
+  }
+]

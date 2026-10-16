@@ -30,8 +30,8 @@ The sets are **nested**: each one contains everything in the one before it.
 
 Make a figure showing the three prediction checkpoints and the later label horizon. In your report:
 
-- [ ] State the assignment assumption: **non-semester columns are available at enrollment.**
-- [ ] State the caveat: in reality `Debtor`, `Tuition fees up to date`, and scholarship status can change, so their exact measurement times must be verified before operational use. Annual economic figures may also be published after enrollment. Do not claim the file proves they are available in real time.
+- [x] State the assignment assumption: **non-semester columns are available at enrollment.**
+- [x] State the caveat: in reality `Debtor`, `Tuition fees up to date`, and scholarship status can change, so their exact measurement times must be verified before operational use. Annual economic figures may also be published after enrollment. Do not claim the file proves they are available in real time.
 
 > **Note: retrospective cohort.** Students who left before a semester ended may already have their outcome reflected in later academic data. The file has no event dates and no checkpoint eligibility, so the main experiment uses the same retrospective cohort at every checkpoint. In your report, discuss why a live evaluation would instead include only students still eligible for advising at each checkpoint.
 

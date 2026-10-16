@@ -24,73 +24,89 @@ class KNNClassifier:
         self.feature_names_: list[str] = []
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> "KNNClassifier":
-        """TODO: validate, copy/store training rows, return self.
-
-        Reject k outside [1, len(X)], noninteger k, unknown distance modes,
-        empty/missing data, nonbinary y, or misaligned/nonunique indexes.
-        Mixed numeric/categorical lists must be disjoint and cover X exactly.
-        Raw mode uses every column numerically and ignores those lists.
-        Raise ValueError for invalid inputs. No scaler is fitted here.
-        """
-        # TODO: perform every validation listed above before storing data.
-        raise NotImplementedError("Validate kNN training inputs")
+        """Validate inputs, store copies of the training rows, and return self."""
+        if isinstance(self.k, bool) or not isinstance(self.k, (int, np.integer)):
+            raise ValueError("k must be an integer")
+        if self.k < 1 or self.k > len(X):
+            raise ValueError("k must lie within [1, number of training rows]")
+        if self.distance not in ("raw", "mixed"):
+            raise ValueError("distance must be 'raw' or 'mixed'")
+        if X.empty:
+            raise ValueError("Training data must be nonempty")
+        if X.isna().any().any():
+            raise ValueError("Training features must not contain missing values")
+        if len(y) != len(X) or not y.index.equals(X.index):
+            raise ValueError("X and y indexes must be aligned")
+        if not X.index.is_unique or not y.index.is_unique:
+            raise ValueError("Row indexes must be unique")
+        labels = pd.unique(y.to_numpy())
+        if not np.isin(labels, (0, 1)).all():
+            raise ValueError("Labels must be binary 0/1")
+        if self.distance == "mixed":
+            numeric_set, categorical_set = set(self.numeric_columns), set(self.categorical_columns)
+            if numeric_set & categorical_set:
+                raise ValueError("numeric and categorical columns must be disjoint")
+            if (numeric_set | categorical_set) != set(X.columns):
+                raise ValueError("numeric and categorical columns must cover X exactly")
         self.feature_names_ = list(X.columns)
         self.X_train_ = X.copy(deep=True)
         self.y_train_ = y.copy(deep=True)
         return self
 
     def _distances(self, row: pd.Series) -> np.ndarray:
-        """TODO: distance from one query to each stored row in training order.
-
-        Raw: sqrt(sum((x_j-z_j)**2)) across every feature.
-        Mixed: sqrt(sum numeric squared differences + sum nominal mismatches).
-        Numeric columns are already scaled; do not scale them again here.
-        Nominal mismatches contribute 0 or 1 regardless of code magnitude.
-        """
+        """Distance from one query Series to every stored training row."""
         if self.X_train_ is None:
             raise ValueError("Fit kNN before calculating distances")
         squared = np.zeros(len(self.X_train_), dtype=float)
         if self.distance == "raw":
             for column in self.feature_names_:
-                # TODO: add squared numeric difference from row[column].
-                raise NotImplementedError("Add raw squared differences")
+                difference = float(row[column]) - self.X_train_[column].to_numpy(dtype=float)
+                squared += difference ** 2
         else:
             for column in self.numeric_columns:
-                # TODO: add squared differences; values are already scaled.
-                raise NotImplementedError("Add scaled numeric differences")
+                difference = float(row[column]) - self.X_train_[column].to_numpy(dtype=float)
+                squared += difference ** 2
             for column in self.categorical_columns:
-                # TODO: add 1 for a mismatch, 0 for a match.
-                raise NotImplementedError("Add categorical mismatches")
+                mismatch = (row[column] != self.X_train_[column].to_numpy()).astype(float)
+                squared += mismatch
         return np.sqrt(squared)
 
     def kneighbors(
         self, X: pd.DataFrame, n_neighbors: int | None = None
     ) -> tuple[np.ndarray, np.ndarray]:
-        """TODO: return (distances, row_ids), both shaped (len(X), requested_k).
-
-        Default requested_k is self.k; an explicit value may differ from self.k.
-        Sort by ascending distance, then ascending integer training row ID.
-        Do not use labels to break ties. Return IDs, not array positions.
-        Reject requested_k outside [1, n_train] or a different feature schema.
-        Raise ValueError before fitting. Keep query input row order.
-        """
-        # TODO: check fitted state, query schema, and requested neighbor count.
-        raise NotImplementedError("Validate kNN neighbor query")
+        """Return (distances, train_row_ids) for the nearest neighbors."""
+        if self.X_train_ is None:
+            raise ValueError("Fit kNN before querying neighbors")
+        if list(X.columns) != self.feature_names_:
+            raise ValueError("Query columns must match the fitted feature schema")
+        if X.isna().any().any():
+            raise ValueError("Query rows must not contain missing values")
         requested_k = self.k if n_neighbors is None else n_neighbors
+        if isinstance(requested_k, bool) or not isinstance(requested_k, (int, np.integer)):
+            raise ValueError("n_neighbors must be an integer")
+        n_train = len(self.X_train_)
+        if requested_k < 1 or requested_k > n_train:
+            raise ValueError("n_neighbors must lie within [1, number of training rows]")
+        train_ids = self.X_train_.index.to_numpy()
         distances = np.empty((len(X), requested_k), dtype=float)
         row_ids = np.empty((len(X), requested_k), dtype=int)
-        train_ids = self.X_train_.index.to_numpy()
         for query_number, (_, row) in enumerate(X.iterrows()):
             all_distances = self._distances(row)
-            # TODO: sort by distance, then train_ids (np.lexsort is useful).
-            # Store the first requested_k distances and IDs in these arrays.
-            raise NotImplementedError("Select nearest training row IDs")
+            # Primary key = ascending distance, secondary = ascending row ID.
+            order = np.lexsort((train_ids, all_distances))
+            distances[query_number] = all_distances[order][:requested_k]
+            row_ids[query_number] = train_ids[order][:requested_k]
         return distances, row_ids
 
     def predict_risk(self, X: pd.DataFrame) -> np.ndarray:
-        """TODO: mean of binary labels among self.k nearest training rows."""
-        raise NotImplementedError("Implement KNNClassifier.predict_risk")
+        """Fraction of the k nearest training neighbors that are dropouts."""
+        _, row_ids = self.kneighbors(X)
+        risks = np.empty(len(X), dtype=float)
+        for query_number in range(len(X)):
+            neighbor_labels = self.y_train_.reindex(row_ids[query_number]).to_numpy()
+            risks[query_number] = neighbor_labels.mean()
+        return risks
 
     def predict(self, X: pd.DataFrame) -> np.ndarray:
-        """TODO: majority vote; exactly 50% dropout votes predicts class 0."""
-        raise NotImplementedError("Implement KNNClassifier.predict")
+        """Majority vote over the k neighbors; an exact tie predicts 0."""
+        return (self.predict_risk(X) > 0.5).astype(int)

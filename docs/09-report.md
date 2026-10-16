@@ -6,9 +6,9 @@
 
 The PDF (submitted with the previous exercises) must contain:
 
-- [ ] Every result in the [evidence checklist](10-submission.md#evidence-checklist), organized by topic
-- [ ] **Clearly labeled answers to all eight required discussion questions** (below)
-- [ ] Installed package versions, and how to run any extra checks you added
+- [x] Every result in the [evidence checklist](10-submission.md#evidence-checklist), organized by topic
+- [x] **Clearly labeled answers to all eight required discussion questions** (below)
+- [x] Installed package versions, and how to run any extra checks you added
 
 A reasonable length is **6–10 pages**, not counting code and detailed tables. Completeness matters more than length.
 

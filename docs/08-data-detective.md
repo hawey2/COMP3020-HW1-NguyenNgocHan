@@ -8,8 +8,8 @@ For every mystery, answer with **evidence from the CSV**, and keep evidence clea
 
 **Compute**
 
-- [ ] The distinct `(Unemployment rate, Inflation rate, GDP)` triples. The supplied CSV has **10**.
-- [ ] The size and label distribution of each triple.
+- [x] The distinct `(Unemployment rate, Inflation rate, GDP)` triples. The supplied CSV has **10**.
+- [x] The size and label distribution of each triple.
 
 **Discuss**
 
@@ -23,14 +23,14 @@ For every mystery, answer with **evidence from the CSV**, and keep evidence clea
 
 **Compute**
 
-- [ ] Zero counts and grade summaries for both semesters, over **all 4,424 rows** of the CSV. Expected values:
+- [x] Zero counts and grade summaries for both semesters, over **all 4,424 rows** of the CSV. Expected values:
 
   | Semester | Zero grades | Mean grade | Median grade |
   | --- | ---: | ---: | ---: |
   | 1 | 718 | about 10.641 | about 12.286 |
   | 2 | 870 | about 10.230 | 12.2 |
 
-- [ ] Cross-tabs of zero grades against enrolled, approved, and without-evaluation units, for each semester.
+- [x] Cross-tabs of zero grades against enrolled, approved, and without-evaluation units, for each semester.
 
 **Discuss**
 

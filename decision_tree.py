@@ -34,33 +34,49 @@ class ID3Classifier:
 
     @staticmethod
     def entropy(y: pd.Series | np.ndarray) -> float:
-        """TODO: binary Shannon entropy in bits; return 0 for empty/pure y."""
-        raise NotImplementedError("Implement ID3Classifier.entropy")
+        """Binary Shannon entropy in bits; 0 for empty or pure labels.
+
+        H(S) = -sum_c p_c * log2(p_c), omitting zero-probability terms.
+        """
+        values = np.asarray(y)
+        if values.size == 0:
+            return 0.0
+        _, counts = np.unique(values, return_counts=True)
+        probabilities = counts / counts.sum()
+        probabilities = probabilities[probabilities > 0]
+        return float(-np.sum(probabilities * np.log2(probabilities)))
 
     @staticmethod
     def information_gain(values: pd.Series, y: pd.Series) -> float:
-        """TODO: entropy before minus weighted entropy after a multiway split.
-
-        values and y are nonempty and aligned by row/index.
-        """
+        """H(S) - weighted-sum H(S_v) over the values of one feature."""
         parent_entropy = ID3Classifier.entropy(y)
+        n_total = len(y)
         weighted_child_entropy = 0.0
         for value in values.unique():
             mask = values.eq(value)
-            # TODO: add (number in this branch / total number) * entropy(y in branch).
-            # Use y.loc[mask] so the labels stay aligned with the feature values.
-            raise NotImplementedError("Add weighted child entropy")
+            branch = y.loc[mask]
+            weighted_child_entropy += (len(branch) / n_total) * ID3Classifier.entropy(branch)
         return parent_entropy - weighted_child_entropy
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> "ID3Classifier":
-        """TODO: validate input, store schema, recursively build root_, return self.
-
-        Reject empty training data, nonbinary labels, missing values, and
-        misaligned/nonunique indexes with ValueError. Retain input column order
-        for information-gain ties; use the first tied feature. Do not mutate X/y.
-        """
-        # TODO: validate hyperparameters, X, y, and their indexes as described above.
-        raise NotImplementedError("Validate ID3 training inputs")
+        """Validate inputs, store schema, build the tree, and return self."""
+        if self.max_depth is not None and self.max_depth < 0:
+            raise ValueError("max_depth must be None or a nonnegative integer")
+        if self.min_samples_split < 2:
+            raise ValueError("min_samples_split must be at least 2")
+        if X.empty:
+            raise ValueError("Training data must be nonempty")
+        if X.isna().any().any():
+            raise ValueError("Training features must not contain missing values")
+        if len(y) != len(X):
+            raise ValueError("X and y must have the same length")
+        if not y.index.equals(X.index):
+            raise ValueError("X and y indexes must be aligned")
+        if not X.index.is_unique or not y.index.is_unique:
+            raise ValueError("Row indexes must be unique")
+        labels = pd.unique(y.to_numpy())
+        if not np.isin(labels, (0, 1)).all():
+            raise ValueError("Labels must be binary 0/1")
         self.feature_names_ = list(X.columns)
         self.root_ = self._build_tree(X, y, self.feature_names_, depth=0)
         return self
@@ -68,11 +84,7 @@ class ID3Classifier:
     def _build_tree(
         self, X: pd.DataFrame, y: pd.Series, features: list[str], depth: int
     ) -> TreeNode:
-        """TODO: compute counts; stop or choose maximum-gain feature and recurse.
-
-        Stop at purity, no features, nonpositive gain (tolerance 1e-12), a depth
-        limit, or too few samples. Remove the split feature along each branch.
-        """
+        """Recursively build a categorical ID3 subtree."""
         n_graduate = int((y == 0).sum())
         n_dropout = int((y == 1).sum())
         node = TreeNode(
@@ -80,15 +92,23 @@ class ID3Classifier:
             prediction=int(n_dropout > n_graduate),
         )
 
-        # TODO: return node when pure, out of features, at max depth, or too small.
-        raise NotImplementedError("Add ID3 stopping conditions")
+        # Stopping: pure node, exhausted features, depth limit, or too few rows.
+        if n_dropout == 0 or n_graduate == 0:
+            return node
+        if not features:
+            return node
+        if self.max_depth is not None and depth >= self.max_depth:
+            return node
+        if len(y) < self.min_samples_split:
+            return node
 
         best_feature = None
         best_gain = 1e-12
         for feature in features:  # Original column order resolves equal-gain ties.
             gain = self.information_gain(X[feature], y)
-            # TODO: update best_feature and best_gain only for strictly larger gain.
-            raise NotImplementedError("Select the best split feature")
+            if gain > best_gain:
+                best_gain = gain
+                best_feature = feature
         if best_feature is None:
             return node
 
@@ -96,65 +116,90 @@ class ID3Classifier:
         remaining = [feature for feature in features if feature != best_feature]
         for value in X[best_feature].unique():
             mask = X[best_feature].eq(value)
-            # TODO: recursively build this child's tree using X.loc[mask],
-            # y.loc[mask], remaining, and depth + 1; store it in node.children.
-            raise NotImplementedError("Build each ID3 child branch")
+            child = self._build_tree(X.loc[mask], y.loc[mask], remaining, depth + 1)
+            node.children[value] = child
         return node
 
     def _traverse(self, row: pd.Series) -> TreeNode:
-        """TODO: return leaf or deepest reached node for an unseen branch value."""
+        """Return the leaf or the deepest node reached on an unseen branch."""
         node = self.root_
         while node.feature is not None:
             value = row[node.feature]
-            # TODO: return node when value has no child; otherwise move to child.
-            raise NotImplementedError("Follow an ID3 branch or fall back")
+            if value not in node.children:
+                return node
+            node = node.children[value]
         return node
 
-    def predict_risk(self, X: pd.DataFrame) -> np.ndarray:
-        """TODO: one dropout fraction per row, preserving input row order.
+    def _check_predict_schema(self, X: pd.DataFrame) -> None:
+        if self.root_ is None:
+            raise ValueError("Fit the tree before predicting")
+        if list(X.columns) != self.feature_names_:
+            raise ValueError("Query columns must match the fitted feature schema")
 
-        Raise ValueError before fit or for a different column schema. Require
-        exactly the fitted columns in the fitted order in all prediction APIs.
-        """
-        raise NotImplementedError("Implement ID3Classifier.predict_risk")
+    def predict_risk(self, X: pd.DataFrame) -> np.ndarray:
+        """Empirical dropout fraction (counts[1]/total) at the reached node."""
+        self._check_predict_schema(X)
+        risks = np.empty(len(X), dtype=float)
+        for position, (_, row) in enumerate(X.iterrows()):
+            node = self._traverse(row)
+            total = node.counts[0] + node.counts[1]
+            risks[position] = node.counts[1] / total if total > 0 else 0.0
+        return risks
 
     def predict(self, X: pd.DataFrame) -> np.ndarray:
-        """TODO: majority class at reached node; an exact class tie predicts 0."""
-        raise NotImplementedError("Implement ID3Classifier.predict")
+        """Majority class at the reached node; an exact tie predicts 0."""
+        self._check_predict_schema(X)
+        predictions = np.empty(len(X), dtype=int)
+        for position, (_, row) in enumerate(X.iterrows()):
+            predictions[position] = self._traverse(row).prediction
+        return predictions
 
     def decision_path(self, row: pd.Series) -> list[dict[str, Any]]:
-        """TODO: explain a single transformed row (index equals fitted columns).
-
-        Each visited node contributes a dict with feature, value, counts, and
-        fallback. counts is (n_Graduate, n_Dropout). At an internal node value
-        is the query value and fallback is True if its branch is unseen. At a
-        leaf feature/value are None and fallback is False. Include the terminal
-        node, including an internal node where traversal falls back. Translate
-        numeric bins to original intervals in the report using the preprocessor.
-        """
-        # TODO: check fitted state and row schema before starting the walk.
-        raise NotImplementedError("Validate an ID3 explanation row")
-        path = []
+        """Explain a single transformed row, node by node."""
+        if self.root_ is None:
+            raise ValueError("Fit the tree before requesting a path")
+        if list(row.index) != self.feature_names_:
+            raise ValueError("Row index must match the fitted feature schema")
+        path: list[dict[str, Any]] = []
         node = self.root_
         while True:
-            # TODO: append a dictionary for node, using its split feature,
-            # query value, stored counts, and whether the next branch is unseen.
-            raise NotImplementedError("Record each visited ID3 node")
-            if node.feature is None or row[node.feature] not in node.children:
+            if node.feature is None:
+                path.append({
+                    "feature": None, "value": None,
+                    "counts": node.counts, "fallback": False,
+                })
                 return path
-            node = node.children[row[node.feature]]
+            value = row[node.feature]
+            if value not in node.children:
+                path.append({
+                    "feature": node.feature, "value": value,
+                    "counts": node.counts, "fallback": True,
+                })
+                return path
+            path.append({
+                "feature": node.feature, "value": value,
+                "counts": node.counts, "fallback": False,
+            })
+            node = node.children[value]
 
     def tree_stats(self) -> dict[str, int]:
-        """TODO: return depth (root=0), n_nodes, and n_leaves; reject before fit."""
+        """Return depth (root=0), node count, and leaf count."""
         if self.root_ is None:
             raise ValueError("Fit the tree before requesting statistics")
 
         def walk(node: TreeNode, depth: int) -> tuple[int, int, int]:
-            """Return deepest depth, number of nodes, number of leaves."""
+            """Return (deepest depth, number of nodes, number of leaves)."""
             if not node.children:
                 return depth, 1, 1
-            # TODO: combine the results of walk(child, depth + 1) for each child.
-            raise NotImplementedError("Aggregate ID3 tree statistics")
+            deepest = depth
+            n_nodes = 1
+            n_leaves = 0
+            for child in node.children.values():
+                child_depth, child_nodes, child_leaves = walk(child, depth + 1)
+                deepest = max(deepest, child_depth)
+                n_nodes += child_nodes
+                n_leaves += child_leaves
+            return deepest, n_nodes, n_leaves
 
         depth, n_nodes, n_leaves = walk(self.root_, depth=0)
         return {"depth": depth, "n_nodes": n_nodes, "n_leaves": n_leaves}

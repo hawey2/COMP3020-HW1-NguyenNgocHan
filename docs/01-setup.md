@@ -38,9 +38,9 @@
 
 Also do the following, and record what you find:
 
-- [ ] Keep a stable row ID taken from the original row position. Use it for splitting, tie-breaking, and explanations. **Never** use the row ID or `Target` as a predictor.
-- [ ] Check duplicates, column types, value ranges, and category frequencies. **Document** anomalies; do not silently delete rows.
-- [ ] Keep the spelling `Nacionality` in code, or explicitly document any rename.
+- [x] Keep a stable row ID taken from the original row position. Use it for splitting, tie-breaking, and explanations. **Never** use the row ID or `Target` as a predictor.
+- [x] Check duplicates, column types, value ranges, and category frequencies. **Document** anomalies; do not silently delete rows.
+- [x] Keep the spelling `Nacionality` in code, or explicitly document any rename.
 
 > **Note: category codes are identifiers.** The local `Course` values are 1–17. The [UCI documentation](https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success) uses other identifiers and includes predictors that are not in this CSV. Do not copy its code-to-name mappings. Treat local category meanings as unverified unless you find a matching codebook. Course-rate tables may use the local codes. Regrouping education codes is optional and needs a verified mapping; keeping the codes nominal is enough.
 

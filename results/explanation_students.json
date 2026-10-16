@@ -1,0 +1,8 @@
+{
+  "rule": "P3 semester-2 ID3 test risks: (1) highest, (2) closest to 0.5, (3) lowest; smaller row ID breaks ties",
+  "students": [
+    39,
+    336,
+    26
+  ]
+}
